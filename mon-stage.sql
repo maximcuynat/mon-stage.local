@@ -18,7 +18,7 @@ CREATE TABLE Contacts (
     Prenom VARCHAR(50),
     Email VARCHAR(50),
     Telephone VARCHAR(20),
-    Poste_Actuelle VARCHAR(50),
+    Poste VARCHAR(50),
     ID_Entreprise INT,
     PRIMARY KEY (ID),
     FOREIGN KEY (ID_Entreprise) REFERENCES Entreprises(ID) ON DELETE CASCADE ON UPDATE CASCADE
@@ -30,7 +30,7 @@ CREATE TABLE Stages (
     Nom_Entreprise VARCHAR(50),
     Lien_Offre VARCHAR(100),
     Description TEXT,
-    Poste DATE,
+    Date_Postulation DATE,
     ID_Entreprise INT,
     PRIMARY KEY (ID),
     FOREIGN KEY (ID_Entreprise) REFERENCES Entreprises(ID) ON DELETE CASCADE ON UPDATE CASCADE
