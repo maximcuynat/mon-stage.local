@@ -113,6 +113,14 @@ abstract class Model
         $req->execute(array($value));
         $req->closeCursor();
     }
+
+    // Selectionner la base de données
+    protected function selectDatabase($database)
+    {
+        $req = self::getBdd()->prepare("USE $database");
+        $req->execute();
+        $req->closeCursor();
+    }
     
 }
 ?>
