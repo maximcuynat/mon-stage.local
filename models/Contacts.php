@@ -7,6 +7,7 @@ class Contacts
     private $_prenom;
     private $_email;
     private $_telephone;
+    private $_poste;
     private $_idEntreprise;
 
     public function __construct(array $data)
@@ -64,6 +65,12 @@ class Contacts
             $this->_idEntreprise = $idEntreprise;
     }
 
+    public function setPoste($poste)
+    {
+        if(is_string($poste))
+            $this->_poste = $poste;
+    }
+
     // GETTERS
 
     public function id()
@@ -94,5 +101,10 @@ class Contacts
     public function idEntreprise()
     {
         return $this->_idEntreprise;
+    }
+
+    public function poste()
+    {
+        return $this->_poste;
     }
 }

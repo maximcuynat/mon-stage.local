@@ -6,15 +6,6 @@
         extract($_POST);
         $errors = array();
 
-        if(empty($nom))
-            array_push($errors, "Le nom du contact est obligatoire");
-        if(empty($prenom))
-            array_push($errors, "Le prénom du contact est obligatoire");
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL))
-            array_push($errors, "L'email du contact n'est pas valide");
-        if(empty($telephone))
-            array_push($errors, "Le téléphone du contact est obligatoire");
-
         if(count($errors) == 0)
         {
             // On ajoute les dans la table Contacts
@@ -22,7 +13,8 @@
                 "Nom"           => $nom,
                 "Prenom"        => $prenom,
                 "Email"         => $email,
-                "Telephone"     => $telephone
+                "Telephone"     => $telephone,
+                "Poste"         => $poste
             );
 
             $contact = new Contacts($data);
@@ -53,13 +45,13 @@
             <!-- Nom -->
             <div class="mb-3 me-3 flex-fill">
                 <label for="nomContact" class="form-label">Nom du contact</label>
-                <input type="text" class="form-control" id="nomContact" name="nom" value="<?= $contact->nom() ?>" required>
+                <input type="text" class="form-control" id="nomContact" name="nom" value="<?= $contact->nom() ?>">
             </div>
 
             <!-- Prénom -->
             <div class="mb-3 ms-3 flex-fill">
                 <label for="prenomContact" class="form-label">Prénom du contact</label>
-                <input type="text" class="form-control" id="prenomContact" name="prenom" value="<?= $contact->prenom() ?>" required>
+                <input type="text" class="form-control" id="prenomContact" name="prenom" value="<?= $contact->prenom() ?>">
             </div>
         </div>
         
@@ -67,13 +59,23 @@
             <!-- Email -->
             <div class="mb-3 me-3 flex-fill">
                 <label for="emailContact" class="form-label">Email du contact</label>
-                <input type="email" class="form-control" id="emailContact" name="email" value="<?= $contact->email() ?>" required>
+                <input type="email" class="form-control" id="emailContact" name="email" value="<?= $contact->email() ?>">
             </div>        
             
             <!-- Téléphone -->
             <div class="mb-3 ms-3 flex-fill">
                 <label for="telContact" class="form-label">Téléphone du contact</label>
-                <input type="tel" class="form-control" id="telContact" name="telephone" value="<?= $contact->telephone() ?>" required>
+                <input type="tel" class="form-control" id="telContact" name="telephone" value="<?= $contact->telephone() ?>">
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Poste -->
+        <div class="d-flex flex-row justify-content-between">
+            <div class="mb-3 flex-fill">
+                <label for="posteContact" class="form-label">Poste du contact</label>
+                <input type="text" class="form-control" id="posteContact" name="poste" value="<?= $contact->poste() ?>">
             </div>
         </div>
         

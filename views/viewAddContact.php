@@ -11,14 +11,9 @@
 
         if(empty($Nom_entreprise))
             array_push($errors, "Le nom de l'entreprise est obligatoire");
-        if(empty($Nom_contact))
-            array_push($errors, "Le nom du contact est obligatoire");
-        if(empty($Prenom_contact))
-            array_push($errors, "Le prénom du contact est obligatoire");
-        if(!filter_var($Email_contact, FILTER_VALIDATE_EMAIL))
+
+        if(isset($Email_contact) && !filter_var($Email_contact, FILTER_VALIDATE_EMAIL))
             array_push($errors, "L'email du contact n'est pas valide");
-        if(empty($Tel_contact))
-            array_push($errors, "Le téléphone du contact est obligatoire");
 
         if(count($errors) == 0)
         {
@@ -48,7 +43,8 @@
                 "Prenom"        => $Prenom_contact,
                 "Email"         => $Email_contact,
                 "Telephone"     => $Tel_contact,
-                "ID_Entreprise" => $idEntreprise
+                "ID_Entreprise" => $idEntreprise,
+                "Poste"         => $Poste_contact
             );
 
             $contact = new Contacts($data);
@@ -66,7 +62,16 @@
 
 <div class="my-3 text-white container px-0">
     <form method="POST">
-        <h1>Enregistrer un Contact</h1>
+        <h1>Enregistrer un Contact</h1> 
+        <?php if(!empty($errors)): ?>
+            <div class="alert alert-danger">
+                <ul>
+                    <?php foreach($errors as $error): ?>
+                        <li><?= $error ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
         <hr>
         <div class="d-flex flex-row justify-content-between">
             <!-- Nom de l'entreprise -->
@@ -87,13 +92,13 @@
             <!-- Nom -->
             <div class="mb-3 me-3 flex-fill">
                 <label for="nomContact" class="form-label">Nom du contact</label>
-                <input type="text" class="form-control" id="nomContact" name="Nom_contact" required>
+                <input type="text" class="form-control" id="nomContact" name="Nom_contact" value="<?php  if(isset($Nom_contact)) echo $Nom_contact; ?>">
             </div>
 
             <!-- Prénom -->
             <div class="mb-3 ms-3 flex-fill">
                 <label for="prenomContact" class="form-label">Prénom du contact</label>
-                <input type="text" class="form-control" id="prenomContact" name="Prenom_contact" required>
+                <input type="text" class="form-control" id="prenomContact" name="Prenom_contact">
             </div>
         </div>
 
@@ -101,22 +106,24 @@
             <!-- Email -->
             <div class="mb-3 me-3 flex-fill">
                 <label for="emailContact" class="form-label">Email du contact</label>
-                <input type="email" class="form-control" id="emailContact" name="Email_contact" required>
+                <input type="email" class="form-control" id="emailContact" name="Email_contact">
             </div>        
             
             <!-- Téléphone -->
             <div class="mb-3 ms-3 flex-fill">
                 <label for="telContact" class="form-label">Téléphone du contact</label>
-                <input type="tel" class="form-control" id="telContact" name="Tel_contact" required>
+                <input type="tel" class="form-control" id="telContact" name="Tel_contact">
             </div>
         </div>
         <hr>
-        <!-- Poste du contact 
-        <div class="mb-3">
-            <label for="posteContact" class="form-label">Poste du contact</label>
-            <input type="text" class="form-control" id="posteContact" name="Poste_contact">
+        <h2>Poste du contact</h2> 
+        <div class="d-flex flex-row justify-content-between">
+            <div class="mb-3 w-100">
+                <label for="posteContact" class="form-label">Poste du contact</label>
+                <input type="text" class="form-control" id="posteContact" name="Poste_contact">
+            </div>
         </div>
-        <hr> -->
+        <hr>
         <!-- Bouton d'ajout -->
         <div class="d-flex justify-content-end">
             <button type="submit" class="btn btn-primary">Ajouter</button>
