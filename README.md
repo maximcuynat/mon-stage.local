@@ -64,4 +64,4 @@ Assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
 ## Me faire un don
 
-paypal.me/graysanderdonation
+[Graysander Donation](https://www.paypal.com/paypalme/graysanderdonation)
