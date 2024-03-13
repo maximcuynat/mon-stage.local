@@ -61,3 +61,7 @@ Assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
 6. **Ouvrir le site web**
     [Mon Stage](http://mon-stage.local/accueil)
+
+## Me faire un don
+
+paypal.me/graysanderdonation
