@@ -30,7 +30,7 @@ CREATE TABLE Stages (
     Nom_Entreprise VARCHAR(50),
     Lien_Offre VARCHAR(100),
     Description TEXT,
-    Date_Postulation DATE,
+    Poste DATE,
     ID_Entreprise INT,
     PRIMARY KEY (ID),
     FOREIGN KEY (ID_Entreprise) REFERENCES Entreprises(ID) ON DELETE CASCADE ON UPDATE CASCADE
