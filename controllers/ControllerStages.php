@@ -84,4 +84,10 @@ class ControllerStages
         $this->_view = new View('InfoStage');
         $this->_view->generate(array('stage' => $stage, 'candidature' => $candidature, 'entreprise' => $entreprise), 'Stage infos');
     }
+
+    private function delete()
+    {
+        $this->_view = new View('AddStage');
+        $this->_view->generate(array(), 'Ajouter un stage');
+    }
 }
