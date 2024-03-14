@@ -90,8 +90,9 @@
                             <select class="form-select bg-dark <?php selectColor($candidature['ID_Statut'])  ?> fw-bolder" aria-label="Status" name="status" onchange="this.form.submit()">
                                 <option <?php if($candidature['ID_Statut'] == '1') echo "selected" ?> value="1">En attente</option>
                                 <option <?php if($candidature['ID_Statut'] == '2') echo "selected" ?> value="2">En cours de traitement</option>
-                                <option <?php if($candidature['ID_Statut'] == '3') echo "selected" ?> value="3">Accepté</option>
-                                <option <?php if($candidature['ID_Statut'] == '4') echo "selected" ?> value="4">Refusé</option>
+                                <option <?php if($candidature['ID_Statut'] == '3') echo "selected" ?> value="3">Entretien</option>
+                                <option <?php if($candidature['ID_Statut'] == '4') echo "selected" ?> value="4">Accepté</option>
+                                <option <?php if($candidature['ID_Statut'] == '5') echo "selected" ?> value="5">Refusé</option>
                             </select>
                         </form>
                     </td>
@@ -145,7 +146,6 @@
                                             <p>Liens vers l'offre : <a class="text-decoration-none" href="<?= $stage->lienOffre() ?>" target="_blank">Voir l'offre</a></p>
                                             <p>Commentaires : <?= $candidature['Commentaires'] ?></p>
                                             <p>Temps écoulé : <?= round((time() - strtotime($stage->datePostulation())) / (60 * 60 * 24)) ?> jours</p>
-                                            <p>Statut : <?= displayStatut($candidature['ID_Statut']) ?></p>
                                         </div>
                                     </div>
                                 </div>
