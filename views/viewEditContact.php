@@ -47,7 +47,7 @@
                 <input type="text" class="form-control" id="entreprise" name="entreprise" value="<?= $entreprises->nom() ?>" disabled>
             </div>
             <div>
-                <a href="/entreprises/edit/<?= $contact->idEntreprise() ?>" class="btn btn-primary">Modifier l'entreprise</a>  
+                <a href="/entreprises/edit/<?= $entreprises->id() ?>" class="btn btn-primary">Modifier l'entreprise</a>  
             </div>
         </div>
         

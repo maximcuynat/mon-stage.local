@@ -35,8 +35,8 @@
                 }
                 else
                 {
-                    require_once('controllers/ControllerStages.php');
-                    $this->_ctrl = new ControllerStages($url);
+                    require_once('controllers/ControllerAccueil.php');
+                    $this->_ctrl = new ControllerAccueil($url);
                 }
             }
             catch(Exception $e)

@@ -5,5 +5,5 @@
     <h2>Informations supplémentaires</h2>
     <p class="text-warning"><?= $errorMessage ?></p>
     <hr>
-    <a href="/" class="btn btn-primary">Retour à l'accueil</a>
+    <a href="/accueil" class="btn btn-primary">Retour à l'accueil</a>
 </div>

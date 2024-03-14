@@ -1,4 +1,5 @@
 <?php
+
     require_once('views/View.php');
 
     class ControllerAccueil
@@ -7,7 +8,7 @@
 
         public function __construct($url)
         {
-            if($url[0] == "accueil" && count($url) == 1)
+            if(isset($url))
                 $this->accueil();
             else
                 throw new Exception('Page introuvable');
