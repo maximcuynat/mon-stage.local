@@ -37,7 +37,10 @@ abstract class Model
         $req = self::getBdd()->prepare('SELECT * FROM '.$table.' WHERE id = ?');
         $req->execute(array($id));
         $data = $req->fetch(PDO::FETCH_ASSOC);
-        return new $obj($data);
+        if($data != false)
+            return new $obj($data);
+        else
+            throw new Exception('Aucun <strong>'.$obj.'</strong> ne correspond à l\'identifiant '.$id);
         $req->closeCursor();
     }
 
@@ -69,6 +72,7 @@ abstract class Model
         $columns = implode(', ', array_keys($data));
         $values = implode(', ', array_fill(0, count($data), '?'));
         $req = self::getBdd()->prepare("INSERT INTO $table ($columns) VALUES ($values)");
+        print_r($data);
         $req->execute(array_values($data));
         $id = self::getBdd()->lastInsertId();
         $req->closeCursor();

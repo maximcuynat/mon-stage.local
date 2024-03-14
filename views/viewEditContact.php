@@ -29,6 +29,7 @@
     <!-- Formulaire pour editer le contact --> 
     <form method="POST">
         <h1>Informations du contact</h1>
+        <hr>
         <?php if(!empty($errors)): ?>
             <div class="alert alert-danger">
                 <ul>
@@ -38,9 +39,23 @@
                 </ul>
             </div>
         <?php endif; ?>
+        <!-- Entreprise  dans laquelle le contact travaille -->
+        <h2>Entreprise du contact</h2>
+        <div class="mb-3 d-flex flex-row justify-content-between align-items-end">
+            <div class="flex-fill me-3">
+                <label for="entreprise" class="form-label">Entreprise</label>
+                <input type="text" class="form-control" id="entreprise" name="entreprise" value="<?= $entreprises->nom() ?>" disabled>
+            </div>
+            <div>
+                <a href="/entreprises/edit/<?= $contact->idEntreprise() ?>" class="btn btn-primary">Modifier l'entreprise</a>  
+            </div>
+        </div>
+        
         <hr>
         <input type="hidden" name="idContact" value="<?= $contact->id()?>">
         <input type="hidden" name="idEntreprise" value="<?= $contact->idEntreprise() ?>">
+        <h2>Informations du contact</h2>
+        <!-- Nom et prénom -->
         <div class="d-flex flex-row justify-content-between">
             <!-- Nom -->
             <div class="mb-3 me-3 flex-fill">
@@ -54,7 +69,7 @@
                 <input type="text" class="form-control" id="prenomContact" name="prenom" value="<?= $contact->prenom() ?>">
             </div>
         </div>
-        
+        <!-- Email et Téléphone -->
         <div class="d-flex flex-row justify-content-between">
             <!-- Email -->
             <div class="mb-3 me-3 flex-fill">
@@ -70,7 +85,7 @@
         </div>
 
         <hr>
-
+        <h2>Poste du contact</h2>
         <!-- Poste -->
         <div class="d-flex flex-row justify-content-between">
             <div class="mb-3 flex-fill">
@@ -78,7 +93,7 @@
                 <input type="text" class="form-control" id="posteContact" name="poste" value="<?= $contact->poste() ?>">
             </div>
         </div>
-        
+        <hr>
         <div class="d-flex justify-content-end">
             <button type="submit" class="btn btn-primary">Enregistrer</button>
         </div>

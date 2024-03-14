@@ -42,7 +42,7 @@
                     <!-- Checkbox pour activer l'input -->
                     <div class="form-check mt-3">
                         <input class="form-check-input" type="checkbox" id="activerNomEntreprise">
-                        <label class="form-check" for="activerNomEntreprise">Modifier</label>
+                        <label class="form-check p-0" for="activerNomEntreprise">Activer la Modification</label>
                     </div>
                     <!-- Script pour activer l'input -->
                     <script>
@@ -57,6 +57,7 @@
                     </script>
                 </div>
             </div>
+            <hr>
             <!-- Adresse -->
             <div class="d-flex flex-row justify-content-between">
                 <div class="mb-3 me-3 flex-fill">

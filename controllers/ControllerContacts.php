@@ -57,7 +57,7 @@
             $entreprises = $this->_entreprisesManager->getEntreprises();
 
             $this->_view = new View('EditContact');
-            $this->_view->generate(array('contact' => $contact, 'entreprises' => $entreprises), 'Modifier un contact');
+            $this->_view->generate(array('contact' => $contact, 'entreprises' => $entreprises[0]), 'Modifier un contact');
         }
 
         private function deleteContact($id)
@@ -71,6 +71,13 @@
         {
             $this->_contactsManager = new ContactsManager;
             $contact = $this->_contactsManager->getContactId($id);
+
+            if($contact == false)
+                throw new Exception('Page introuvable');
+            else
+
+            $this->_view = new View('InfoContact');
+            $this->_view->generate(array('contact' => $contact), 'Contact');
         }
     }
 ?>

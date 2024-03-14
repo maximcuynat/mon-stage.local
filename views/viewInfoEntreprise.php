@@ -1,6 +1,7 @@
 <div class="mt-3 text-white container px-0">
     <h1 class="mb-2"><?= $entreprise->nom() ?><h1>
     <hr>
+    <!-- Affichage des informations de l'entreprise -->
     <h2 class="">Adresse</h2>
     <p>
         <?= $entreprise->adresse() ?>
@@ -8,13 +9,18 @@
         <?= $entreprise->ville() ?>
         <?= $entreprise->pays() ?>
     </p>
+    <a href="https://www.google.com/maps/search/?api=1&query=<?= $entreprise->adresse() ?>+<?= $entreprise->codePostal() ?>+<?= $entreprise->ville() ?>+<?= $entreprise->pays() ?>" target="_blank">Voir sur Google Maps</a>
     <hr>
+    
+    <!-- Affichage des informations de contact -->
     <h2 class="">Site web</h2>
     <p><a href="<?= $entreprise->siteWeb() ?>" target="_blank"><?= $entreprise->siteWeb() ?></a></p>
     <hr>
-    <h2 class="">Contacts</h2>
+    
+    <!-- Affichage des informations de contact -->
+    <h2>Contacts</h2>
     <!-- Affichage des contacts sour forme de carte bootstrap -->
-    <div class="d-flex flex-wrap gap-3">
+    <div class="d-flex flex-wrap gap-3 pb-5">
         <?php foreach($allContacts as $contact): ?>
             <!-- Carte bootstrap theme noir -->
             <div class="card bg-dark text-white" style="width: 18rem;">
@@ -39,6 +45,8 @@
                         <h6>Téléphone</h6>
                         <p class="card-text"><?= $contact->telephone() ?></p>
                     <?php endif; ?>
+                    <!-- Boutton pour modifier le contact -->
+                    <a href="/contacts/edit/<?= $contact->id() ?>" class="btn btn-primary">Modifier</a>
                 </div>
             </div>
             

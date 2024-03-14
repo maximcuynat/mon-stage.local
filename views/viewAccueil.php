@@ -17,4 +17,8 @@
 
     <!-- Ajouter mon entreprise -->
     <a type="button" class="btn btn-primary mb-3" href="/entreprises/add">Ajouter ma première entreprise</a><br>
+
+    <!-- Pour soutenir le projet -->
+    <p >Si vous souhaitez soutenir le projet, vous pouvez faire un don qui servira plus tard à héberger un site web pour simplifier son utilisation</p>
+    <a type="button" class="btn btn-primary mb-3" href="https://www.paypal.com/paypalme/graysanderdonation" target="_blank">Faire un don</a>
 </div>
