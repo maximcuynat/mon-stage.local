@@ -120,7 +120,6 @@ abstract class Model
         $req = self::getBdd()->prepare("USE $database");
         $req->execute();
         $req->closeCursor();
-    }
-    
+    }    
 }
 ?>

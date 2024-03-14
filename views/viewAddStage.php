@@ -100,6 +100,7 @@
                 <select class="form-select" aria-label="Status" name="status" required>
                     <option value="1">En attente</option>
                     <option value="2">En cours de traitement</option>
+                    <option value="3">Entretien</option>
                     <option value="3">Accepté</option>
                     <option value="4">Refusé</option>
                 </select>
@@ -121,7 +122,7 @@
         <hr>
         <div class="d-flex flex-row justify-content-between">
             <!-- Date de postulation -->
-            <div class="mb-3 me-3 flex-fill">
+            <div class="mb-3">
                 <label for="datePostulation" class="form-label">Date de postulation</label>
                 <input type="date" class="form-control" id="datePostulation" name="Date_postulation" required>
             </div>

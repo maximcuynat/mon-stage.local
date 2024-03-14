@@ -14,10 +14,12 @@
             "Telephone" => $Telephone,
             "Site_web" => $Site_web
         );
-        
+
+        print_r($data);
+        // On met a jours l'entreprise
         $entrepriseManager = new EntreprisesManager();
         $entrepriseManager->updateEntreprise($data, $id);
-        // header("Location: /entreprises");
+        header("Location: /entreprises");
 
     }
 ?>
@@ -34,7 +36,25 @@
             <div class="d-flex flex-row justify-content-between">
                 <div class="mb-3 flex-fill">
                     <label for="nomEntreprise" class="form-label">Nom de l'entreprise</label>
-                    <input type="text" class="form-control" id="nomEntreprise" name="Nom_entreprise" placeholder="Nom de l'entreprise" value="<?= $entreprise->nom() ?>">
+                    <!-- Input nom de l'entreprise désactivé -->
+                    <input type="text" class="form-control" id="nomEntreprise" name="Nom_entreprise" placeholder="Nom de l'entreprise" value="<?= $entreprise->nom() ?>" disabled>
+                    <input type="hidden" name="Nom_entreprise" value="<?= $entreprise->nom() ?>">
+                    <!-- Checkbox pour activer l'input -->
+                    <div class="form-check mt-3">
+                        <input class="form-check-input" type="checkbox" id="activerNomEntreprise">
+                        <label class="form-check" for="activerNomEntreprise">Modifier</label>
+                    </div>
+                    <!-- Script pour activer l'input -->
+                    <script>
+                        // Mettre a jours la valeur du champ caché
+                        document.getElementById('nomEntreprise').addEventListener('input', function() {
+                            document.querySelector('input[name="Nom_entreprise"]').value = this.value;
+                        });
+
+                        document.getElementById('activerNomEntreprise').addEventListener('change', function() {
+                            document.getElementById('nomEntreprise').disabled = !document.getElementById('nomEntreprise').disabled;
+                        });
+                    </script>
                 </div>
             </div>
             <!-- Adresse -->

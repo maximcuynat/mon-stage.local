@@ -27,7 +27,7 @@
                 <div>
                     <a class="navbar-brand ms-3 fw-bold" href="/accueil">Mes Stages</a>
                 </div>
-                <div class="ms-1 collapse navbar-collapse">
+                <div class="ms-1 collapse navbar-collapse flex-fill">
                     <ul class="navbar-nav gap-2">
                         <!-- Ajouter -->
                         <li class="nav-item dropdown">
@@ -50,35 +50,10 @@
                                 <a class="btn btn-dark" href="/contacts">Voir les contacts</a>
                             </li>
                         </ul>
-                    <ul hidden class="navbar-nav gap-2">
-                        <!-- Candidatures -->
-                        <li class="nav-item dropdown">
-                            <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Candidatures</button>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="/stages">Voir les candidature</a></li>
-                                <li><a class="dropdown-item" href="/stages/add">Ajouter une candidature</a></li>
-                            </ul>
-                        </li>
-                        <!-- Entreprises -->
-                        <li class="nav-item dropdown">
-                            <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Entreprises</button>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="/entreprises">Voir les entreprises</a></li>
-                                <li><a class="dropdown-item" href="/entreprises/add">Ajouter une entreprise</a></li>
-                            </ul>
-                        </li>
-                        <!-- Candidatures -->
-                        <li class="nav-item dropdown">
-                            <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Contacts</button>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="/contacts">Voir les contacts</a></li>
-                                <li><a class="dropdown-item" href="/contacts/add">Ajouter un contact</a></li>
-                            </ul>
-                        </li>
                     </ul>
                 </div>
             </nav>
-
+            
             <!-- Content -->
             <div>
                 <?= $content ?>
