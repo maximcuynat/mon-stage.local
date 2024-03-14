@@ -43,7 +43,7 @@
             {
                 $errorMsg = $e->getMessage();
                 $this->_view = new View('Error');
-                $this->_view->generate(array('errorMsg' => $errorMsg), 'Error');
+                $this->_view->generate(array('errorMessage' => $errorMsg), 'Error');
             }
         }
     }

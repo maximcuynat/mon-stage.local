@@ -19,7 +19,6 @@
         {
             // on vérifie que l'entreprise n'existe pas déjà
             $entrepriseManager = new EntreprisesManager();
-
             $entreprise = $entrepriseManager->getEntreprise($Nom_entreprise);
             
             // Si l'entreprise n'existe pas
@@ -35,6 +34,7 @@
             else
             {
                 $idEntreprise = $entreprise['ID'];
+                print_r($idEntreprise);
             }
 
             // On ajoute les dans la table Contacts
@@ -51,9 +51,8 @@
             $contactManager = new ContactsManager();
             $idNewContact = $contactManager->addContact($data);
 
-            header('Location: /contacts');
+            // header('Location: /contacts');
         }
-
     }
 
 ?>
@@ -77,7 +76,7 @@
             <!-- Nom de l'entreprise -->
             <div class="mb-3 w-50">
                 <label for="nomEntreprise" class="form-label">Nom de l'entreprise</label>
-                <input type="text" class="form-control" id="entreprise" name="Nom_entreprise" list="entreprises" required>
+                <input type="text" class="form-control" id="entreprise" name="Nom_entreprise" list="entreprises">
                 <datalist id="entreprises">
                     <?php foreach ($entreprises as $entreprise) { ?>
                         <option value="<?= $entreprise->nom() ?>"></option>
