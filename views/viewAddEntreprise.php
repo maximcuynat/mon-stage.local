@@ -3,6 +3,7 @@
     if(!empty($_POST))
     {
         extract($_POST);
+        var_dump($_POST);
         // Gestions de erreur du formulaire 
         $errors = array();
 
@@ -27,23 +28,10 @@
             // On ajoute les dans la table Entreprises
             $entreprise = new Entreprises($data);
             $entrepriseManager = new EntreprisesManager();
-            $idEntreprise = $entrepriseManager->addEntreprise($data);
-
-            $dataContact = array(
-                "Nom"               => $Nom_contact,
-                "Prenom"            => $Prenom_contact,
-                "Email"             => $Mail_contact,
-                "Telephone"         => $Telephone_contact,
-                "ID_Entreprise"     => $idEntreprise,
-            );
-
-            // On ajoute les dans la table Contacts
-            $contact = new Contacts($dataContact);
-            $contactManager = new ContactsManager();
-            $contactManager->addContact($data);
+            #$idEntreprise = $entrepriseManager->addEntreprise($data);
 
             // Redirection vers la page d'accueil
-            header("Location: /entreprises");
+            #header("Location: /entreprises");
         }
     }
 
