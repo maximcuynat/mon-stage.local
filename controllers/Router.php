@@ -20,7 +20,6 @@
                 if(isset($_GET['url']))
                 {
                     $url = explode('/', filter_var($_GET['url'], FILTER_SANITIZE_URL));
-                    // var_dump($url);
                     $controller = ucfirst(strtolower($url[0]));
                     $controllerClass = "Controller".$controller;
                     $controllerFile  = "controllers/".$controllerClass.".php";

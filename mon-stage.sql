@@ -26,7 +26,7 @@ CREATE TABLE Contacts (
 
 -- Création de la table "Stages"
 CREATE TABLE Stages (
-    Id INT NOT NULL AUTO_INCREMENT,
+    ID INT NOT NULL AUTO_INCREMENT,
     Nom_Entreprise VARCHAR(50),
     Lien_Offre VARCHAR(100),
     Description TEXT,
