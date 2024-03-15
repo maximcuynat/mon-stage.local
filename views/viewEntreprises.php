@@ -18,8 +18,7 @@
             <tbody>
                 <tr>
                     <td colspan="6" class="text-center">
-                        <p>Aucune entreprise</p>
-                        <a href="/entreprises/add"><button type="button" class="btn"><i class="bi bi-plus-circle-fill text-success"></i></button></a>
+                        <p>Aucune entreprise<br><span class="text-warning">Attention, vous ne pouvez pas ajouter de stage sans entreprise</span></p>
                     </td>
                 </tr>
             </tbody>

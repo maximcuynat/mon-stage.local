@@ -34,7 +34,6 @@
                             <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Ajouter</button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="/stages/add">Un Stage</a></li>
-                                <li><a class="dropdown-item" href="/entreprises/add">Une Entreprise</a></li>
                                 <li><a class="dropdown-item" href="/contacts/add">Un Contact</a></li>
                             </ul>
                         </li>

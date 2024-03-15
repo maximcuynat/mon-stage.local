@@ -3,35 +3,49 @@
     if(!empty($_POST))
     {
         extract($_POST);
-        var_dump($_POST);
         // Gestions de erreur du formulaire 
         $errors = array();
 
+        var_dump($_POST);
+
         // Vérification des champs
-        if(empty($Nom_entreprise) || empty($Adresse) || empty($Ville) || empty($Code_postal) || empty($Pays) || empty($Telephone) || empty($Site_web))
-            array_push($errors, "Tous les champs doivent être remplis");
+        if(empty($Nom))
+            $errors[] = "Le nom de l'entreprise est obligatoire";
+        if(empty($Adresse))
+            $errors[] = "L'adresse est obligatoire";
+        if(empty($Ville))
+            $errors[] = "La ville est obligatoire";
+        if(empty($Code_Postal))
+            $errors[] = "Le code postal est obligatoire";
+        if(empty($Pays))
+            $errors[] = "Le pays est obligatoire";
+        if(empty($Telephone))
+            $errors[] = "Le téléphone est obligatoire";
+        if(empty($Site_Web))
+            $errors[] = "Le site web est obligatoire";
         
 
         // Si il n'y a pas d'erreur
         if(count($errors) == 0)
         {
             $dataEntreprise = array(
-                "Nom_entreprise"    => $Nom_entreprise,
-                "Adresse"           => $Adresse,
-                "Ville"             => $Ville,
-                "Code_postal"       => $Code_postal,
-                "Pays"              => $Pays,
-                "Telephone"         => $Telephone,
-                "Site_web"          => $Site_web,
+                "Nom"           => $Nom,
+                "Adresse"       => $Adresse,
+                "Ville"         => $Ville,
+                "Code_Postal"   => $Code_Postal,
+                "Pays"          => $Pays,
+                "Telephone"     => $Telephone,
+                "Site_Web"      => $Site_Web
             );
+            var_dump($dataEntreprise);
 
             // On ajoute les dans la table Entreprises
-            $entreprise = new Entreprises($data);
-            $entrepriseManager = new EntreprisesManager();
-            #$idEntreprise = $entrepriseManager->addEntreprise($data);
+            $entreprise         = new Entreprises($data);
+            $entrepriseManager  = new EntreprisesManager();
+            $idEntreprise       = $entrepriseManager->addEntreprise($data);
 
             // Redirection vers la page d'accueil
-            #header("Location: /entreprises");
+            header("Location: /entreprises");
         }
     }
 
@@ -43,6 +57,15 @@
     <!-- Formulaire -->
     <form method="POST">
         <h1>Entreprise</h1>
+        <?php
+            if(!empty($errors))
+            {
+                echo "<div class='alert alert-danger'>";
+                foreach($errors as $error)
+                    echo "<p>$error</p>";
+                echo "</div>";
+            }
+        ?>
         <hr>
         <div>
             <!-- Informations de l'enreprise -->
@@ -50,7 +73,7 @@
             <div class="d-flex flex-row justify-content-between">
                 <div class="mb-3 flex-fill">
                     <label for="nomEntreprise" class="form-label">Nom de l'entreprise</label>
-                    <input type="text" class="form-control" id="nomEntreprise" name="Nom_entreprise" placeholder="Nom de l'entreprise">
+                    <input type="text" class="form-control" id="nomEntreprise" name="Nom" placeholder="Nom de l'entreprise">
                 </div>
             </div>
             <!-- Adresse -->
@@ -65,7 +88,7 @@
                 </div>
                 <div class="mb-3 mx-3 flex-fill">
                     <label for="codepostal" class="form-label">Code Postal</label>
-                    <input type="text" class="form-control" id="codepostal" name="Code_postal" placeholder="Code Postal">
+                    <input type="text" class="form-control" id="codepostal" name="Code_Postal" placeholder="Code Postal">
                 </div>
                 <div class="mb-3 ms-3 flex-fill">
                     <label for="pays" class="form-label">Pays</label>
@@ -80,7 +103,7 @@
                 </div>
                 <div class="mb-3 ms-3 flex-fill">
                     <label for="siteWeb" class="form-label">Site web</label>
-                    <input type="text" class="form-control" id="siteWeb" name="Site_web" placeholder="Site web">
+                    <input type="text" class="form-control" id="siteWeb" name="Site_Web" placeholder="Site web">
                 </div>
             </div>
         </div>

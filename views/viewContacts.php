@@ -17,10 +17,10 @@
             <tbody>
                 <tr>
                     <td colspan="6" class="text-center">
-                        <p>Aucun contact</p>
-                        <a href="/contacts/add"><button type="button" class="btn"><i class="bi bi-plus-circle-fill text-success"></i></button></a>
+                        <p class="m-0 text-warning">Aucun contact<br>
+                            <a href="/contacts/add"><button type="button" class="btn"><i class="bi bi-plus-circle-fill text-success"></i></button></a>
+                        </p>
                     </td>
-
                 </tr>
             </tbody>
         <?php endif; ?>

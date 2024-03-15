@@ -7,7 +7,7 @@
 
         private static function setBdd()
         {
-            self::$bdd = new PDO('mysql:host=localhost;dbname=internships;charset=utf8', 'root', '');
+            self::$bdd = new PDO('mysql:host=localhost;dbname=internships-v2;charset=utf8', 'root', '');
             self::$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
         }
 
@@ -73,6 +73,7 @@
             $values = implode(', ', array_fill(0, count($data), '?'));
             $req = self::getBdd()->prepare("INSERT INTO $table ($columns) VALUES ($values)");
             $req->execute(array_values($data));
+            var_dump($req);
             $id = self::getBdd()->lastInsertId();
             $req->closeCursor();
             return $id;
