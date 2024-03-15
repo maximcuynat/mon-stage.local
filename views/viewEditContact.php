@@ -74,7 +74,7 @@
                 <input type="hidden" name="Nom_entreprise" value="<?= $entreprises->nom() ?>">
                 <input type="hidden" name="idEntreprise" value="<?= $contact->idEntreprise() ?>">
             </div>
-            
+          
             <div class="d-flex flex-fill flex-row mt-3 justify-content-between align-items-start">
                 <!-- Checkbox pour activer l'input --> 
                 <div class="form-check">

@@ -3,6 +3,7 @@
     if(!empty($_POST))
     {
         extract($_POST);
+        
         // Gestions de erreur du formulaire 
         $errors = array();
 
@@ -23,7 +24,6 @@
         {
             // on vérifie que l'entreprise n'existe pas déjà
             $entrepriseManager = new EntreprisesManager();
-
             $entreprise = $entrepriseManager->getEntreprise($Nom_entreprise);
             
             // Si l'entreprise n'existe pas
@@ -79,12 +79,19 @@
     <form method="POST">
         <h1>Candidature</h1>
         <hr>
+        <?php if(!empty($errors)) { ?>
+            <div class="alert alert-danger" role="alert">
+                <?php foreach($errors as $error) { ?>
+                    <p><?= $error ?></p>
+                <?php } ?>
+            </div>
+        <?php } ?>
         <h2>Informations générale</h2>
         <!-- Nom de l'entreprise -->
         <div class="d-flex flex-row justify-content-between">
             <div class="mb-3 me-3 flex-fill">
                 <label for="nomEntreprise" class="form-label">Nom de l'entreprise</label>
-                <input type="text" class="form-control" id="entreprise" name="Nom_entreprise" list="entreprises" required>
+                <input type="text" class="form-control" id="entreprise" name="Nom_entreprise" list="entreprises" >
                 <datalist id="entreprises">
                     <?php foreach ($entreprises as $entreprise) { ?>
                         <option value="<?= $entreprise->nom() ?>"></option>
@@ -93,38 +100,40 @@
             </div>
             <div class="mb-3 mx-3 flex-fill">
                 <label for="lienOffre" class="form-label">Liens vers l'offre de stage</label>
-                <input type="text" class="form-control" id="lienOffre" name="Lien_offre" required>
+                <input type="text" class="form-control" id="lienOffre" name="Lien_offre" >
             </div>
             <div class="mb-3 ms-3 flex-fill">
                 <label for="statut" class="form-label">Statut</label>
-                <select class="form-select" aria-label="Status" name="status" required>
+                <select class="form-select" aria-label="Status" name="status" >
                     <option value="1">En attente</option>
                     <option value="2">En cours de traitement</option>
                     <option value="3">Entretien</option>
-                    <option value="3">Accepté</option>
-                    <option value="4">Refusé</option>
+                    <option value="4">Accepté</option>
+                    <option value="5">Refusé</option>
                 </select>
             </div>
         </div>
+
         <h2>Descriptions</h2>
         <hr>
         <div class="d-flex flex-row justify-content-between">
             <div class="mb-3 me-3 flex-fill">
                 <label for="description" class="form-label">Descriptions de l'offre</label>
-                <textarea type="text" class="form-control" id="description" name="Description" rows="8" required></textarea>
+                <textarea type="text" class="form-control" id="description" name="Description" rows="8" ></textarea>
             </div>
             <div class="mb-3 ms-3 flex-fill">
                 <label for="Commentaires" class="form-label">Commentaires</label>
                 <textarea type="text" class="form-control" id="Commentaires" name="Commentaires" rows="8"></textarea>
             </div>
         </div>
+
         <h2>Date de postulation et site web</h2>
         <hr>
         <div class="d-flex flex-row justify-content-between">
             <!-- Date de postulation -->
             <div class="mb-3">
                 <label for="datePostulation" class="form-label">Date de postulation</label>
-                <input type="date" class="form-control" id="datePostulation" name="Date_postulation" required>
+                <input type="date" class="form-control" id="datePostulation" name="Date_postulation" >
             </div>
             <!-- Site web 
             <div class="mb-3 ms-3 flex-fill">
@@ -133,6 +142,7 @@
             </div>
         -->
         </div>
+
         <hr>
         <div class="d-flex justify-content-end">
             <button type="submit" class="btn btn-primary">Enregistrer</button>

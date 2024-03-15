@@ -32,8 +32,10 @@
         <p class="mb-2">Contactez l'entreprise pour plus d'informations</p>
     <?php else : ?>
         <p class="mb-2">Pas d'informations de contact</p>
+        <!-- Ajouter des informations de contact -->
         <a href="/entreprises/edit/<?= $entreprise->id();?>" class="fw-bold btn btn-primary">Ajouter des informations de contact</a>
     <?php endif; ?>
+    
     <?php if ($entreprise->telephone()) : ?>
         <p class="mb-2">Téléphone: <a href="tel:<?= $entreprise->telephone(); ?>" class="text-decoration-none"><?= $entreprise->telephone(); ?></a></p>
     <?php endif; ?>
