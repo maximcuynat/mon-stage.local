@@ -8,13 +8,38 @@
 
         if(count($errors) == 0)
         {
+
+            // Si l'entreprise à été modifié, on récupère l'id de l'entreprise pour le mettre à jours
+            if(isset($Nom_entreprise))
+            {
+                $entrepriseManager = new EntreprisesManager();
+                $entreprise = $entrepriseManager->getEntreprise($Nom_entreprise);
+                if($entreprise == null)
+                {
+                    $dataEntreprise = array(
+                        "Nom"    => $Nom_entreprise
+                    );
+                    $entreprise = new Entreprises($dataEntreprise);
+                    $idEntreprise = $entrepriseManager->addEntreprise($dataEntreprise);
+                }
+                else
+                {
+                    $idEntreprise = $entreprise->id();
+                }
+            }
+            else
+            {
+                $idEntreprise = $idEntreprise;
+            }
+
             // On ajoute les dans la table Contacts
             $data = array(
                 "Nom"           => $nom,
                 "Prenom"        => $prenom,
                 "Email"         => $email,
                 "Telephone"     => $telephone,
-                "Poste"         => $poste
+                "Poste"         => $poste,
+                "ID_Entreprise" => $idEntreprise
             );
 
             $contact = new Contacts($data);
@@ -41,13 +66,35 @@
         <?php endif; ?>
         <!-- Entreprise  dans laquelle le contact travaille -->
         <h2>Entreprise du contact</h2>
-        <div class="mb-3 d-flex flex-row justify-content-between align-items-end">
-            <div class="flex-fill me-3">
+        <div class="mb-3 d-flex flex-column justify-content-between">
+            
+            <div class="flex-fill">
                 <label for="entreprise" class="form-label">Entreprise</label>
                 <input type="text" class="form-control" id="entreprise" name="entreprise" value="<?= $entreprises->nom() ?>" disabled>
+                <input type="hidden" name="Nom_entreprise" value="<?= $entreprises->nom() ?>">
+                <input type="hidden" name="idEntreprise" value="<?= $contact->idEntreprise() ?>">
             </div>
-            <div>
-                <a href="/entreprises/edit/<?= $contact->idEntreprise() ?>" class="btn btn-primary">Modifier l'entreprise</a>  
+            
+            <div class="d-flex flex-fill flex-row mt-3 justify-content-between align-items-start">
+                <!-- Checkbox pour activer l'input --> 
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="activerEntreprise">
+                    <label class="form-check" for="activerEntreprise">Activer la Modification</label>
+                </div>
+
+                <!-- Script pour activer l'input -->
+                <script>
+                    // Mettre a jours la valeur du champ caché
+                    document.getElementById('entreprise').addEventListener('input', function() {
+                        document.querySelector('input[name="Nom_entreprise"]').value = this.value;
+                    });
+                    document.getElementById('activerEntreprise').addEventListener('change', function() {
+                        document.getElementById('entreprise').disabled = !document.getElementById('entreprise').disabled;
+                    });
+                </script>
+                <div>
+                    <a href="/entreprises/edit/<?= $contact->idEntreprise() ?>" class="btn btn-primary">Modifier l'entreprise</a>  
+                </div>
             </div>
         </div>
         

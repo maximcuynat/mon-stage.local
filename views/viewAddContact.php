@@ -51,7 +51,7 @@
             $contactManager = new ContactsManager();
             $idNewContact = $contactManager->addContact($data);
 
-            // header('Location: /contacts');
+            header('Location: /contacts');
         }
     }
 

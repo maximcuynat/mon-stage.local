@@ -5,6 +5,8 @@
     {
         extract($_POST);
 
+        var_dump($_POST);
+
         $data = array(
             "Nom" => $Nom_entreprise,
             "Adresse" => $Adresse,
@@ -37,7 +39,7 @@
                 <div class="mb-3 flex-fill">
                     <label for="nomEntreprise" class="form-label">Nom de l'entreprise</label>
                     <!-- Input nom de l'entreprise désactivé -->
-                    <input type="text" class="form-control" id="nomEntreprise" name="Nom_entreprise" placeholder="Nom de l'entreprise" value="<?= $entreprise->nom() ?>" disabled>
+                    <input type="text" class="form-control" id="nomEntreprise" name="Nom_entreprise_Modifier" placeholder="Nom de l'entreprise" value="<?= $entreprise->nom() ?>" disabled>
                     <input type="hidden" name="Nom_entreprise" value="<?= $entreprise->nom() ?>">
                     <!-- Checkbox pour activer l'input -->
                     <div class="form-check mt-3">
