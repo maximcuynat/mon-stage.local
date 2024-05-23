@@ -122,6 +122,16 @@
             $req = self::getBdd()->prepare("USE $database");
             $req->execute();
             $req->closeCursor();
-        }    
+        }
+
+        // Récupérer toutes les bases de données disponibles
+        protected function getAllDatabases()
+        {
+            $req = self::getBdd()->prepare("SHOW DATABASES");
+            $req->execute();
+            $databases = $req->fetchAll(PDO::FETCH_ASSOC);
+            $req->closeCursor();
+            return $databases;
+        }
     }
 ?>
