@@ -22,6 +22,9 @@
                 echo 'text-success';
                 break;
             case '4':
+                echo 'text-success';
+                break;
+            case '5':
                 echo 'text-danger';
                 break;
             default:

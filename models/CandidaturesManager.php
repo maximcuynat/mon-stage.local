@@ -4,7 +4,7 @@ class CandidaturesManager extends Model
 {
 
     // Get
-
+    
     public function getCandidatures()
     {
         $this->getBdd();
