@@ -24,7 +24,7 @@
                 }
                 else
                 {
-                    $idEntreprise = $entreprise->id();
+                    $idEntreprise = $entreprise["ID"];
                 }
             }
             else
