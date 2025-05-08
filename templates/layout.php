@@ -41,7 +41,8 @@
             transition: background-color 0.3s;
         }
 
-        .sidebar .nav-link:hover, .sidebar .nav-link.active {
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
             background-color: var(--sidebar-hover-bg-color);
         }
 

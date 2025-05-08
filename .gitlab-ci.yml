@@ -1,25 +1,22 @@
 stages:
   - build
   - test
-  - deploy
 
-before_script:
-  - echo "Setting up environment..."
-  - pip install -r requirements.txt
+variables:
+  TEST_RESULT: "success"
 
 build:
   stage: build
   script:
-    - echo "Building the project..."
+    - echo "Installing dependencies..."
+    - pip install -r requirements.txt
 
 test:
   stage: test
   script:
-    - pytest
+    - echo "Running tests..."
+    - pytest > result.log; tail -n 10 result.log
+    - echo "TEST_RESULT=$TEST_RESULT" >> .env
 
-deploy:
-  stage: deploy
-  script:
-    - echo "Deploying the project..."
-  only:
-    - main
+after_script:
+  - echo "Test result is $TEST_RESULT"
