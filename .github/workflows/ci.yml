@@ -1,40 +1,41 @@
-name: CI/CD Pipeline
+name: CI Workflow
 
 on:
   push:
     branches:
       - dev
-      - test
       - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
+      # Étape 1 : Checkout du code
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Docker (si tu utilises Docker)
-        uses: docker/setup-buildx-action@v1
+      # Étape 2 : Configurer Python
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
 
+      # Étape 3 : Installer les dépendances
       - name: Install dependencies
         run: |
-          # Installer les dépendances nécessaires ici
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # Étape 4 : Exécuter les tests
       - name: Run tests
         run: |
-          # Exécuter les tests de l'application
-          pytest
+          pytest > result.log; tail -n 10 result.log
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+      # Étape 5 : Définir une variable d'environnement au lieu de `set-output`
+      - name: Set test result as environment variable
+        id: set_output
+        run: echo "test_result=success" >> $GITHUB_ENV
 
-    steps:
-      - name: Deploy to production
-        run: |
-          # Déployer la version sur l'environnement de production
-          echo "Deploying to production server"
+      # Étape 6 : Afficher la valeur de la variable (facultatif)
+      - name: Display test result
+        run: echo "Test result is ${{ env.test_result }}"
