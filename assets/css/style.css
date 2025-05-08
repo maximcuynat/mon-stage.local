@@ -1,0 +1,59 @@
+/* Styles personnalisés */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.jumbotron {
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 0.3rem;
+    margin-bottom: 2rem;
+}
+
+.table th {
+    vertical-align: middle;
+}
+
+/* Couleurs pour les statuts */
+.status-badge {
+    display: inline-block;
+    padding: 0.25em 0.6em;
+    font-size: 0.75em;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+
+.status-attente {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.status-candidature {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.status-entretien {
+    background-color: #6f42c1;
+    color: white;
+}
+
+.status-accepte {
+    background-color: #28a745;
+    color: white;
+}
+
+.status-refuse {
+    background-color: #dc3545;
+    color: white;
+}

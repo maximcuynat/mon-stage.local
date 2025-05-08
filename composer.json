@@ -1,0 +1,13 @@
+{
+  "name": "votre-nom/gestion-stages",
+  "description": "Application de gestion de stages",
+  "type": "project",
+  "require": {
+    "php": ">=7.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  }
+}

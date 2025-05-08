@@ -1,67 +1,37 @@
-# Installation du Site Web de Gestion de Candidatures de Stage
+# Ma gestion de recherche de stage
 
-Ce guide vous aidera à installer et à configurer le site web de gestion de candidatures de stage sur votre environnement local.
+## Introduction
+
+Bienvenue dans "Ma gestion de recherche de stage", un projet conçu pour vous aider à gérer votre recherche de stage de manière efficace.
 
 ## Prérequis
 
-Assurez-vous d'avoir les éléments suivants installés sur votre machine :
+Avant de commencer, assurez-vous d'avoir installé les logiciels suivants sur votre ordinateur :
 
-- Serveur web (par exemple, Apache)
-- PHP (version 7.x recommandée)
-- Système de gestion de base de données MySQL ou MariaDB
-- Un navigateur web moderne
+- [Docker](https://www.docker.com/get-started)
 
-## Étapes d'Installation
+## Installation
 
-1. Installer git GUI
+1. **Installer Docker** :
+   - Suivez les instructions sur le site officiel de Docker pour installer Docker sur votre système d'exploitation.
 
-1. **Installer xampp server** ! 
-    - [Installer XAMPP](https://www.apachefriends.org/fr/download.html)
+2. **Télécharger le projet** :
+   - Téléchargez le projet depuis le dépôt fourni ou copiez-le sur votre ordinateur.
 
-2. **Ajouter le nom de domaine mon-stage.local**
-    - Aller chercher le fichier host
-    *WIN + r et copier coller le chemin d'accès ci dessous*
-        > C:\Windows\System32\drivers\etc\
+3. **Exécuter le fichier d'installation** :
+   - Une fois Docker installé, double-cliquez simplement sur le fichier `install.bat` pour lancer l'installation et l'exécution du projet.
 
-    - Ouvrir le fichier en tant que administrateur avec un editeur de texte et ajouter la ligne suivante.
-        > 127.0.0.1 mon-stage.local
+## Configuration
 
-3. **Cloner le site web à partir de github dans le fichier**
-    > C:\www\
+Aucune configuration supplémentaire n'est nécessaire pour ce projet. Tout est géré automatiquement par le script d'installation.
 
-4. **Configurer XAMPP Serveur**
+## Dépannage
 
-- Aller dans le dossier suivant
-    >C:\xampp\apache\conf\extra\
-- Ouvrir le fichier *httpd-vhosts.conf*
-    ```
-    <VirtualHost 127.0.0.1:80>
-        DocumentRoot "C:/www/mon-stage.local"
-        ServerName mon-stage.local
-        ErrorLog "logs/mon-stage.local-error.log"
-        CustomLog "logs/mon-stage.local-access.log" common
-        <Directory "C:/www/mon-stage.local">
-            Options Indexes FollowSymLinks
-            AllowOverride All
-            Require all granted
-        </Directory>
-    </VirtualHost>
-    ```
+Si vous rencontrez des problèmes, voici quelques solutions courantes :
 
-5. **La base de donnée**
-- Aller à l'adresse suivante
-    [PHP My Admin SQL](http://localhost/phpmyadmin/index.php?route=/server/databases)
+- **Docker ne démarre pas** : Assurez-vous que Docker est correctement installé et que le service Docker est en cours d'exécution.
+- **Erreur lors de l'exécution de `install.bat`** : Vérifiez que vous avez les permissions nécessaires pour exécuter des scripts et que vous êtes dans le bon répertoire.
 
-- Créer la base de donner
-    Donner le nom suivant
-    > internships
-    
-- Executer le code au liens suivant
-    [SQL Internships BDD](http://localhost/phpmyadmin/index.php?route=/database/sql&db=internships)
+## Support
 
-6. **Ouvrir le site web**
-    [Mon Stage](http://mon-stage.local/accueil)
-
-## Me faire un don
-
-[Graysander Donation](https://www.paypal.com/paypalme/graysanderdonation)
+Si vous avez des questions ou des problèmes, n'hésitez pas à contacter le support technique ou à ouvrir une issue sur le dépôt du projet.
