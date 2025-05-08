@@ -1,0 +1,40 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - dev
+      - test
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker (si tu utilises Docker)
+        uses: docker/setup-buildx-action@v1
+
+      - name: Install dependencies
+        run: |
+          # Installer les dépendances nécessaires ici
+          pip install -r requirements.txt
+
+      - name: Run tests
+        run: |
+          # Exécuter les tests de l'application
+          pytest
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Deploy to production
+        run: |
+          # Déployer la version sur l'environnement de production
+          echo "Deploying to production server"
