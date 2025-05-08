@@ -1,0 +1,25 @@
+stages:
+  - build
+  - test
+  - deploy
+
+before_script:
+  - echo "Setting up environment..."
+  - pip install -r requirements.txt
+
+build:
+  stage: build
+  script:
+    - echo "Building the project..."
+
+test:
+  stage: test
+  script:
+    - pytest
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying the project..."
+  only:
+    - main
