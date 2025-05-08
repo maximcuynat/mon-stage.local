@@ -1,21 +1,21 @@
 @echo off
-echo === Mise à jour du projet ===
+echo === Project Update ===
 
-REM Vérifie que Git est dispo
+REM Check if Git is available
 where git >nul 2>&1
 if errorlevel 1 (
-    echo Git n'est pas installé ou pas dans le PATH.
+    echo Git is not installed or not in the PATH.
     pause
     exit /b
 )
 
-REM Demande sur quelle branche on est
+REM Get the current branch
 for /f "tokens=*" %%i in ('git rev-parse --abbrev-ref HEAD') do set BRANCH=%%i
 
-echo Vous êtes sur la branche : %BRANCH%
-echo Récupération des dernières modifications...
+echo You are on the branch: %BRANCH%
+echo Fetching the latest changes...
 git pull origin %BRANCH%
 
 echo.
-echo === Mise à jour terminée ===
+echo === Update completed ===
 pause
