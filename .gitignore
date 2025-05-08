@@ -1,3 +1,5 @@
 /move/
 /mon-stage.sql/
 /db_data/
+
+sync-branches.bat
