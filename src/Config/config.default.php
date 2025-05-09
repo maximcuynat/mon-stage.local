@@ -2,7 +2,7 @@
 // Configuration par défaut (à versionner)
 return [
     'db' => [
-        'host' => 'localhost',
+        'host' => 'db',
         'name' => 'internships',
         'user' => 'user',
         'pass' => 'password',
