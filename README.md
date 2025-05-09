@@ -1,112 +1,37 @@
-# Configuration spéciale pour les tests fonctionnels
-Cette branche contient une page de tests fonctionnels accessible à l'URL `/debug`. Cette page n'est active que dans cette branche grâce à la configuration `environment: 'test'`.
+# Ma gestion de recherche de stage
 
-## Workflow Git adapté
-### 1. Récupérer les mises à jour de dev pour tester
+## Introduction
 
-```bash
-git checkout test
-git pull origin test
-git merge dev --no-commit    # Merge sans commit automatique
-# À ce stade, les fichiers sont mergés mais non commités
-```
+Bienvenue dans "Ma gestion de recherche de stage", un projet conçu pour vous aider à gérer votre recherche de stage de manière efficace.
 
-### 2. Gérer les configurations spécifiques à l'environnement
-```bash
-# Ajuster la configuration pour l'environnement de test
-echo "<?php 
-return [
-    'db' => [
-        'host' => 'db',
-        'name' => 'internships',
-        'user' => 'root',
-        'pass' => 'rootpassword',
-        'charset' => 'utf8'
-    ],
-    'app' => [
-        'environment' => 'test'
-    ]
-]; " > src/Config/config.local.php
+## Prérequis
 
-# Vérifier les changements
-git status
+Avant de commencer, assurez-vous d'avoir installé les logiciels suivants sur votre ordinateur :
 
-# Ajouter les fichiers modifiés, y compris la configuration
-git add .
+- [Docker](https://www.docker.com/get-started)
 
-# Compléter le merge avec un message approprié
-git commit -m "merge: fusion de dev vers test avec config d'environnement test"
+## Installation
 
-# Pousser vers la branche distante
-git push origin test
-```
+1. **Installer Docker** :
+   - Suivez les instructions sur le site officiel de Docker pour installer Docker sur votre système d'exploitation.
 
-### 3. Tester les fonctionnalités
-Accédez à l'URL `/debug` pour exécuter tous les tests fonctionnels et voir les résultats dans l'interface web.
+2. **Télécharger le projet** :
+   - Téléchargez le projet depuis le dépôt fourni ou copiez-le sur votre ordinateur.
 
-### 4. Appliquer un commit spécifique (cherry-pick)
-```bash
-git checkout test
-git cherry-pick <hash_commit_de_dev>
+3. **Exécuter le fichier d'installation** :
+   - Une fois Docker installé, double-cliquez simplement sur le fichier `install.bat` pour lancer l'installation et l'exécution du projet.
 
-# Ajuster la configuration après le cherry-pick si nécessaire
-echo "<?php return ['app' => ['environment' => 'test']]; " > src/Config/config.local.php
-git add src/Config/config.local.php
-git commit --amend --no-edit   # Amender le commit précédent sans changer le message
+## Configuration
 
-git push origin test
-```
+Aucune configuration supplémentaire n'est nécessaire pour ce projet. Tout est géré automatiquement par le script d'installation.
 
-### 5. Passer en production (branche main)
-```bash
-git checkout main
-git pull origin main
-git merge test --no-commit      # Merge sans commit automatique
+## Dépannage
 
-# Ajuster la configuration pour l'environnement de production
-echo "<?php 
-return [
-    'db' => [
-        'host' => 'production-db-host',
-        'name' => 'internships',
-        'user' => 'prod-user',
-        'pass' => 'prod-password-secure',
-        'charset' => 'utf8'
-    ],
-    'app' => [
-        'environment' => 'production'
-    ]
-]; " > src/Config/config.local.php
+Si vous rencontrez des problèmes, voici quelques solutions courantes :
 
-# Compléter le merge
-git add .
-git commit -m "release: déploiement en production"
-git push origin main
+- **Docker ne démarre pas** : Assurez-vous que Docker est correctement installé et que le service Docker est en cours d'exécution.
+- **Erreur lors de l'exécution de `install.bat`** : Vérifiez que vous avez les permissions nécessaires pour exécuter des scripts et que vous êtes dans le bon répertoire.
 
-# Tagger la release
-git tag vX.X.X
-git push origin vX.X.X
-```
+## Support
 
-## Astuce pour maintenir des configurations différentes
-Le fichier `.gitignore` contient normalement `src/Config/config.local.php` pour éviter de versionner les configurations locales. Cependant, dans ce workflow, nous voulons délibérément committer ce fichier pour chaque environnement.
-Une alternative serait d'utiliser un script de post-checkout qui configure automatiquement l'environnement en fonction de la branche:
-
-```bash
-# À placer dans .git/hooks/post-checkout (rendre exécutable avec chmod +x)
-#!/bin/bash
-
-BRANCH=$(git symbolic-ref --short HEAD)
-
-if [ "$BRANCH" = "test" ]; then
-    echo "Configuration pour l'environnement de test"
-    echo "<?php return ['app' => ['environment' => 'test']]; " > src/Config/config.local.php
-elif [ "$BRANCH" = "main" ]; then
-    echo "Configuration pour l'environnement de production"
-    echo "<?php return ['app' => ['environment' => 'production']]; " > src/Config/config.local.php
-else
-    echo "Configuration pour l'environnement de développement"
-    echo "<?php return ['app' => ['environment' => 'development']]; " > src/Config/config.local.php
-fi
-```
-Ce hook s'exécutera automatiquement à chaque changement de branche, adaptant votre configuration en conséquence.
+Si vous avez des questions ou des problèmes, n'hésitez pas à contacter le support technique ou à ouvrir une issue sur le dépôt du projet.
