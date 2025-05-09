@@ -9,6 +9,7 @@ use App\Controllers\EntrepriseController;
 use App\Controllers\ContactController;
 use App\Controllers\AccueilController;
 use App\Exceptions\NotFoundException;
+use App\Controllers\DebugController;
 
 class Router
 {
@@ -24,7 +25,19 @@ class Router
         $url = $this->parseUrl();
 
         try {
-            // Routing en fonction de l'URL
+            // Gestion de la route debug spécifiquement
+            if (!empty($url[0]) && $url[0] === 'debug') {
+                if (CONFIG['app']['environment'] === 'test') {
+                    $controller = $this->container->get(DebugController::class);
+                    $controller->index();
+                    return;
+                } else {
+                    header('Location: /');
+                    exit;
+                }
+            }
+
+            // Routing en fonction de l'URL (votre code existant)
             if (empty($url[0])) {
                 $controller = $this->container->get(AccueilController::class);
                 $controller->index();

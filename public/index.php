@@ -1,15 +1,15 @@
 <?php
 // public/index.php
 
-// Définition du chemin de base
-define('ROOT', dirname(__DIR__));
+// Inclusion de l'autoloader de Composer
+require_once __DIR__ . '/../vendor/autoload.php';
 
-// Autoloader de Composer
-require_once ROOT . '/vendor/autoload.php';
+// Chargement de la configuration
+require_once __DIR__ . '/../src/Config/config.php';
 
-// Configuration
-require_once ROOT . '/src/Config/config.php';
+// Inclusion du routeur
+require_once __DIR__ . '/../src/Router.php';
 
-// Router
+// Création et exécution du routeur
 $router = new App\Router();
 $router->route();

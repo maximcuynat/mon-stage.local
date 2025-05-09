@@ -18,6 +18,8 @@ use App\Controllers\EntrepriseController;
 use App\Controllers\ContactController;
 use App\Controllers\AccueilController;
 use App\View\ViewRenderer;
+use App\Controllers\DebugController;
+use App\Tests\FunctionalTestRunner;
 
 class Container
 {
@@ -122,6 +124,13 @@ class Container
             case AccueilController::class:
                 return new AccueilController(
                     $this->get(ViewRenderer::class)
+                );
+            
+            // Debug
+            case DebugController::class:
+                return new DebugController(
+                    $this->get(ViewRenderer::class),
+                    new FunctionalTestRunner()
                 );
 
             default:
