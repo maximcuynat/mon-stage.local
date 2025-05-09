@@ -50,7 +50,7 @@ class StageController
             $candidature = $this->candidatureService->getCandidatureByStageId($id);
             $entreprise = $this->entrepriseService->getEntrepriseById($stage->getIdEntreprise());
 
-            $this->viewRenderer->render('stage.info', [
+            $this->viewRenderer->render('stages.info', [
                 'stage' => $stage,
                 'candidature' => $candidature,
                 'entreprise' => $entreprise
@@ -150,7 +150,7 @@ class StageController
             $entreprise = $this->entrepriseService->getEntrepriseById($stage->getIdEntreprise());
             $entreprises = $this->entrepriseService->getAllEntreprises();
 
-            $this->viewRenderer->render('EditStage', [
+            $this->viewRenderer->render('stages.edit', [
                 'stage' => $stage,
                 'candidature' => $candidature,
                 'entreprise' => $entreprise,
