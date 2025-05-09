@@ -34,7 +34,7 @@ class StageController
     public function index(): void
     {
         $stages = $this->stageService->getAllStages();
-        $this->viewRenderer->render('Stages', [
+        $this->viewRenderer->render('stages.index', [
             'stages' => $stages
         ]);
     }
@@ -50,7 +50,7 @@ class StageController
             $candidature = $this->candidatureService->getCandidatureByStageId($id);
             $entreprise = $this->entrepriseService->getEntrepriseById($stage->getIdEntreprise());
 
-            $this->viewRenderer->render('InfoStage', [
+            $this->viewRenderer->render('stage.info', [
                 'stage' => $stage,
                 'candidature' => $candidature,
                 'entreprise' => $entreprise
@@ -67,7 +67,7 @@ class StageController
         $entreprises = $this->entrepriseService->getAllEntreprises();
         $statuts = $this->statutService->getAllStatuts();
 
-        $this->viewRenderer->render('AddStage', [
+        $this->viewRenderer->render('stages.new', [
             'entreprises' => $entreprises,
             'statuts' => $statuts
         ]);
@@ -87,7 +87,7 @@ class StageController
             $entreprises = $this->entrepriseService->getAllEntreprises();
             $statuts = $this->statutService->getAllStatuts();
 
-            $this->viewRenderer->render('AddStage', [
+            $this->viewRenderer->render('stages.new', [
                 'entreprises' => $entreprises,
                 'statuts' => $statuts,
                 'errors' => $errors,
@@ -129,7 +129,7 @@ class StageController
             $entreprises = $this->entrepriseService->getAllEntreprises();
             $statuts = $this->statutService->getAllStatuts();
 
-            $this->viewRenderer->render('AddStage', [
+            $this->viewRenderer->render('stages.new', [
                 'entreprises' => $entreprises,
                 'statuts' => $statuts,
                 'error' => $e->getMessage(),

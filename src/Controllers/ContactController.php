@@ -27,7 +27,7 @@ class ContactController
     public function index(): void
     {
         $contacts = $this->contactService->getAllContacts();
-        $this->viewRenderer->render('Contacts', [
+        $this->viewRenderer->render('contacts.index', [
             'contacts' => $contacts
         ]);
     }
@@ -38,7 +38,7 @@ class ContactController
             $contact = $this->contactService->getContactById($id);
             $entreprise = $this->entrepriseService->getEntrepriseById($contact->getIdEntreprise());
 
-            $this->viewRenderer->render('InfoContact', [
+            $this->viewRenderer->render('contacts.info', [
                 'contact' => $contact,
                 'entreprise' => $entreprise
             ]);
@@ -53,7 +53,7 @@ class ContactController
     {
         $entreprises = $this->entrepriseService->getAllEntreprises();
 
-        $this->viewRenderer->render('AddContact', [
+        $this->viewRenderer->render('contacts.add', [
             'entreprises' => $entreprises
         ]);
     }
@@ -96,7 +96,7 @@ class ContactController
         } catch (ValidationException $e) {
             $entreprises = $this->entrepriseService->getAllEntreprises();
 
-            $this->viewRenderer->render('AddContact', [
+            $this->viewRenderer->render('contacts.add', [
                 'entreprises' => $entreprises,
                 'errors' => $e->getErrors(),
                 'data' => $data
@@ -104,7 +104,7 @@ class ContactController
         } catch (\Exception $e) {
             $entreprises = $this->entrepriseService->getAllEntreprises();
 
-            $this->viewRenderer->render('AddContact', [
+            $this->viewRenderer->render('contacts.add', [
                 'entreprises' => $entreprises,
                 'error' => $e->getMessage(),
                 'data' => $data
@@ -119,7 +119,7 @@ class ContactController
             $entreprise = $this->entrepriseService->getEntrepriseById($contact->getIdEntreprise());
             $entreprises = $this->entrepriseService->getAllEntreprises();
 
-            $this->viewRenderer->render('EditContact', [
+            $this->viewRenderer->render('contacts.edit', [
                 'contact' => $contact,
                 'entreprise' => $entreprise,
                 'entreprises' => $entreprises
@@ -171,7 +171,7 @@ class ContactController
             $entreprise = $this->entrepriseService->getEntrepriseById($contact->getIdEntreprise());
             $entreprises = $this->entrepriseService->getAllEntreprises();
 
-            $this->viewRenderer->render('EditContact', [
+            $this->viewRenderer->render('contacts.adit', [
                 'contact' => $contact,
                 'entreprise' => $entreprise,
                 'entreprises' => $entreprises,
@@ -183,7 +183,7 @@ class ContactController
             $entreprise = $this->entrepriseService->getEntrepriseById($contact->getIdEntreprise());
             $entreprises = $this->entrepriseService->getAllEntreprises();
 
-            $this->viewRenderer->render('EditContact', [
+            $this->viewRenderer->render('contacts.edit', [
                 'contact' => $contact,
                 'entreprise' => $entreprise,
                 'entreprises' => $entreprises,

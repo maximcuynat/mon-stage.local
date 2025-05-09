@@ -27,7 +27,7 @@ class EntrepriseController
     public function index(): void
     {
         $entreprises = $this->entrepriseService->getAllEntreprises();
-        $this->viewRenderer->render('Entreprises', [
+        $this->viewRenderer->render('entreprises.index', [
             'entreprises' => $entreprises
         ]);
     }
@@ -38,7 +38,7 @@ class EntrepriseController
             $entreprise = $this->entrepriseService->getEntrepriseById($id);
             $contacts = $this->contactService->getContactsByEntrepriseId($id);
 
-            $this->viewRenderer->render('InfoEntreprise', [
+            $this->viewRenderer->render('entreprises.info', [
                 'entreprise' => $entreprise,
                 'allContacts' => $contacts
             ]);
@@ -51,7 +51,7 @@ class EntrepriseController
 
     public function create(): void
     {
-        $this->viewRenderer->render('AddEntreprise', []);
+        $this->viewRenderer->render('entreprises.new', []);
     }
 
     public function store(): void
@@ -77,12 +77,12 @@ class EntrepriseController
 
             header('Location: /entreprises');
         } catch (ValidationException $e) {
-            $this->viewRenderer->render('AddEntreprise', [
+            $this->viewRenderer->render('entreprises.new', [
                 'errors' => $e->getErrors(),
                 'data' => $data
             ]);
         } catch (\Exception $e) {
-            $this->viewRenderer->render('AddEntreprise', [
+            $this->viewRenderer->render('entreprises.new', [
                 'error' => $e->getMessage(),
                 'data' => $data
             ]);
@@ -94,7 +94,7 @@ class EntrepriseController
         try {
             $entreprise = $this->entrepriseService->getEntrepriseById($id);
 
-            $this->viewRenderer->render('EditEntreprise', [
+            $this->viewRenderer->render('entreprises.adit', [
                 'entreprise' => $entreprise
             ]);
         } catch (NotFoundException $e) {
@@ -129,7 +129,7 @@ class EntrepriseController
         } catch (ValidationException $e) {
             $entreprise = $this->entrepriseService->getEntrepriseById($id);
 
-            $this->viewRenderer->render('EditEntreprise', [
+            $this->viewRenderer->render('entreprises.edit', [
                 'entreprise' => $entreprise,
                 'errors' => $e->getErrors(),
                 'data' => $data
@@ -137,7 +137,7 @@ class EntrepriseController
         } catch (\Exception $e) {
             $entreprise = $this->entrepriseService->getEntrepriseById($id);
 
-            $this->viewRenderer->render('EditEntreprise', [
+            $this->viewRenderer->render('entreprises.edit', [
                 'entreprise' => $entreprise,
                 'error' => $e->getMessage(),
                 'data' => $data

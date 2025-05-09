@@ -4,21 +4,29 @@ namespace App\View;
 
 class ViewRenderer
 {
-    public function render(string $viewName, array $data = [], string $layout = 'layout'): void
+    private TemplateResolver $resolver;
+    
+    public function __construct(TemplateResolver $resolver = null)
     {
-        // Extraire les données pour les rendre disponibles dans la vue
+        $this->resolver = $resolver ?? new TemplateResolver();
+    }
+    
+    public function render(string $view, array $data = [], string $layout = 'layouts.default'): void
+    {
         extract($data);
-
-        // Démarrer la mise en mémoire tampon
         ob_start();
-
-        // Inclure la vue
-        require_once __DIR__ . "/../../templates/{$viewName}.php";
-
-        // Récupérer le contenu de la vue
+        require $this->resolver->resolve($view);
         $content = ob_get_clean();
-
-        // Inclure le layout avec le contenu
-        require_once __DIR__ . "/../../templates/{$layout}.php";
+        if ($layout === null || $layout === false) {
+            echo $content;
+            return;
+        }
+        require $this->resolver->resolve($layout);
+    }
+    
+    public function include(string $partial, array $data = []): void
+    {
+        extract($data);
+        require $this->resolver->resolve('partials.' . $partial);
     }
 }
