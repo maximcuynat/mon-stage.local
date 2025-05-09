@@ -4,4 +4,4 @@ sync-branches.bat
 
 src/Config/config.local.php
 vendor/
-aide.md
+*.md
