@@ -171,7 +171,7 @@ class ContactController
             $entreprise = $this->entrepriseService->getEntrepriseById($contact->getIdEntreprise());
             $entreprises = $this->entrepriseService->getAllEntreprises();
 
-            $this->viewRenderer->render('contacts.adit', [
+            $this->viewRenderer->render('contacts.edit', [
                 'contact' => $contact,
                 'entreprise' => $entreprise,
                 'entreprises' => $entreprises,

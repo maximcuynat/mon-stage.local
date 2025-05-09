@@ -94,7 +94,7 @@ class EntrepriseController
         try {
             $entreprise = $this->entrepriseService->getEntrepriseById($id);
 
-            $this->viewRenderer->render('entreprises.adit', [
+            $this->viewRenderer->render('entreprises.edit', [
                 'entreprise' => $entreprise
             ]);
         } catch (NotFoundException $e) {

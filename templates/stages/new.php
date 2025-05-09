@@ -59,7 +59,7 @@
             <div class="mb-3">
                 <label for="Description" class="form-label">Description *</label>
                 <textarea class="form-control" id="Description" name="Description" rows="4" required>
-                    <?= isset($data['Description']) ? htmlspecialchars($data['Description']) : '' ?>
+                    <?= isset($data['Description']) ? htmlspecialchars(trim($data['Description'])) : '' ?>
                 </textarea>
             </div>
 
@@ -100,7 +100,7 @@
             <div class="mb-3">
                 <label for="Commentaires" class="form-label">Commentaires</label>
                 <textarea class="form-control" id="Commentaires" name="Commentaires" rows="3">
-                    <?= isset($data['Commentaires']) ? htmlspecialchars($data['Commentaires']) : '' ?>
+                    <?= isset($data['Commentaires']) ? htmlspecialchars(trim($data['Commentaires'])) : '' ?>
                 </textarea>
             </div>
         </div>
