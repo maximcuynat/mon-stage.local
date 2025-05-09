@@ -31,30 +31,27 @@ class Router
                 return;
             }
 
-            switch ($url[0]) {
-                case 'stages':
-                    $controller = $this->container->get(StageController::class);
-                    $this->handleStageRoutes($controller, $url);
-                    break;
+            $routes = [
+                'stages' => StageController::class,
+                'entreprises' => EntrepriseController::class,
+                'contacts' => ContactController::class,
+                'accueil' => AccueilController::class
+            ];
 
-                case 'entreprises':
-                    $controller = $this->container->get(EntrepriseController::class);
-                    $this->handleEntrepriseRoutes($controller, $url);
-                    break;
-
-                case 'contacts':
-                    $controller = $this->container->get(ContactController::class);
-                    $this->handleContactRoutes($controller, $url);
-                    break;
-
-                case 'accueil':
-                    $controller = $this->container->get(AccueilController::class);
-                    $controller->index();
-                    break;
-
-                default:
-                    throw new NotFoundException("Page introuvable");
+            if (!isset($routes[$url[0]])) {
+                throw new NotFoundException("Page introuvable");
             }
+
+            $controllerClass = $routes[$url[0]];
+            $controller = $this->container->get($controllerClass);
+
+            if ($url[0] === 'accueil' || count($url) === 1) {
+                $controller->index();
+                return;
+            }
+
+            $this->handleGenericRoutes($controller, $url);
+
         } catch (NotFoundException $e) {
             $view = $this->container->get(ViewRenderer::class);
             $view->render('Error', [
@@ -73,111 +70,11 @@ class Router
         if (isset($_GET['url'])) {
             return explode('/', filter_var($_GET['url'], FILTER_SANITIZE_URL));
         }
-
         return [];
     }
 
-    private function handleStageRoutes(StageController $controller, array $url): void
+    private function handleGenericRoutes(object $controller, array $url): void
     {
-        if (count($url) === 1) {
-            $controller->index();
-            return;
-        }
-
-        if (count($url) >= 2) {
-            switch ($url[1]) {
-                case 'add':
-                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                        $controller->store();
-                    } else {
-                        $controller->create();
-                    }
-                    break;
-
-                case 'edit':
-                    if (isset($url[2]) && is_numeric($url[2])) {
-                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                            $controller->update((int) $url[2]);
-                        } else {
-                            $controller->edit((int) $url[2]);
-                        }
-                    } else {
-                        throw new NotFoundException("Page introuvable");
-                    }
-                    break;
-
-                case 'delete':
-                    if (isset($url[2]) && is_numeric($url[2])) {
-                        $controller->delete((int) $url[2]);
-                    } else {
-                        throw new NotFoundException("Page introuvable");
-                    }
-                    break;
-
-                default:
-                    if (is_numeric($url[1])) {
-                        $controller->show((int) $url[1]);
-                    } else {
-                        throw new NotFoundException("Page introuvable");
-                    }
-            }
-        }
-    }
-
-    private function handleEntrepriseRoutes(EntrepriseController $controller, array $url): void
-    {
-        if (count($url) === 1) {
-            $controller->index();
-            return;
-        }
-
-        if (count($url) >= 2) {
-            switch ($url[1]) {
-                case 'add':
-                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                        $controller->store();
-                    } else {
-                        $controller->create();
-                    }
-                    break;
-
-                case 'edit':
-                    if (isset($url[2]) && is_numeric($url[2])) {
-                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                            $controller->update((int) $url[2]);
-                        } else {
-                            $controller->edit((int) $url[2]);
-                        }
-                    } else {
-                        throw new NotFoundException("Page introuvable");
-                    }
-                    break;
-
-                case 'delete':
-                    if (isset($url[2]) && is_numeric($url[2])) {
-                        $controller->delete((int) $url[2]);
-                    } else {
-                        throw new NotFoundException("Page introuvable");
-                    }
-                    break;
-
-                default:
-                    if (is_numeric($url[1])) {
-                        $controller->show((int) $url[1]);
-                    } else {
-                        throw new NotFoundException("Page introuvable");
-                    }
-            }
-        }
-    }
-
-    private function handleContactRoutes(ContactController $controller, array $url): void
-    {
-        if (count($url) === 1) {
-            $controller->index();
-            return;
-        }
-
         if (count($url) >= 2) {
             switch ($url[1]) {
                 case 'add':

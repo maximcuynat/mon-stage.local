@@ -1,19 +1,26 @@
 <?php
 // src/Config/config.php
 
+// Chargement des variables d'environnement
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
+$dotenv->load();
+
+// Vérification des variables requises
+$dotenv->required(['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASS', 'APP_ENV']);
+
 // Configuration de base
 const CONFIG = [
     'db' => [
-        'host' => 'db',  // Nom du service dans docker-compose.yml
-        'name' => 'internships',
-        'user' => 'root',
-        'pass' => 'rootpassword',
-        'charset' => 'utf8'
+        'host' => $_ENV['DB_HOST'],  
+        'name' => $_ENV['DB_NAME'],
+        'user' => $_ENV['DB_USER'],
+        'pass' => $_ENV['DB_PASS'],
+        'charset' => $_ENV['DB_CHARSET'] ?? 'utf8'
     ],
     'app' => [
-        'name' => 'Gestion des Stages',
-        'version' => '2.0.0',
-        'environment' => 'development' // 'production' en production
+        'name' => $_ENV['APP_NAME'] ?? 'Gestion des Stages',
+        'version' => $_ENV['APP_VERSION'] ?? '2.0.0',
+        'environment' => $_ENV['APP_ENV']
     ]
 ];
 
