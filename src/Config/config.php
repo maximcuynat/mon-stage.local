@@ -1,28 +1,17 @@
 <?php
 // src/Config/config.php
 
-// Chargement des variables d'environnement
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
-$dotenv->load();
+// Charger les configurations
+$defaultConfig = require_once __DIR__ . '/config.default.php';
+$localConfig = file_exists(__DIR__ . '/config.local.php') 
+    ? require_once __DIR__ . '/config.local.php'
+    : [];
 
-// Vérification des variables requises
-$dotenv->required(['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASS', 'APP_ENV']);
+// Fusionner les configurations (la locale écrase la défaut)
+$config = array_replace_recursive($defaultConfig, $localConfig);
 
-// Configuration de base
-const CONFIG = [
-    'db' => [
-        'host' => $_ENV['DB_HOST'],  
-        'name' => $_ENV['DB_NAME'],
-        'user' => $_ENV['DB_USER'],
-        'pass' => $_ENV['DB_PASS'],
-        'charset' => $_ENV['DB_CHARSET'] ?? 'utf8'
-    ],
-    'app' => [
-        'name' => $_ENV['APP_NAME'] ?? 'Gestion des Stages',
-        'version' => $_ENV['APP_VERSION'] ?? '2.0.0',
-        'environment' => $_ENV['APP_ENV']
-    ]
-];
+// Définir la constante CONFIG
+define('CONFIG', $config);
 
 // Configuration de l'affichage des erreurs
 if (CONFIG['app']['environment'] === 'development') {
